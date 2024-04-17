@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="resource/favicon.png" rel="shortcut icon" type="image/x-icon">
+  <title>식단표</title>
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css"/>
+  <link rel="stylesheet" href="resource/animation.css" />
+</head>
+<body>
+  <header class="container">
+    <nav>
+      <ul>
+        <li><h1 class="ani-toRight">식단표좀 보자</h1></li>
+      </ul>
+      <ul>
+        <li><a href="https://blog.naver.com/PostList.naver?blogId=iyongju0608&categoryNo=0&from=postList#" target="_blank">우체국 미니뷔페 블로그</a></li>
+      </ul>
+    </nav>
+  </header>
+  <main class="container">
+    <section>
+      <div id="loadingIndicator"></div>
+      <details role="button" class="contrast outline ani-toRight ani-delay-1">
+          <summary>사진 올리기</summary>
+          <form onsubmit="return submitMealImageFile(event)">
+              <input type="file" accept="image/*" id="imageFile" onchange="showFileImage(event);" required>
+              <input type="submit" value="전송" id="submitImageFile">
+              <div id="showFileImage"></div>
+          </form>
+      </details>
+      <details role="button" class="contrast outline ani-toRight ani-delay-2">
+          <summary>혹시 이번주 사진이 아닌가요?</summary>
+          <label>
+              <input name="show-image" type="checkbox" role="switch" aria-checked="false" onclick="switchEvent(event);"/>
+              다른 사람이 직접 올린 식단표 보기
+          </label>
+      </details>
+      <div id="dataInput">
+          <article aria-busy="true"></article>
+      </div>
+    </section>
+  </main>
+
+
+  <!-- ### -->
+  <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-firestore.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-storage.js"></script>
+  <script type="text/javascript" src="resource/bootstrap.min.js"></script>
+  <script type="text/javascript" src="resource/main.js"></script>
+</body>
+</html>

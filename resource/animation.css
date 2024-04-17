@@ -1,0 +1,27 @@
+
+.ani-toRight {
+    opacity: 0;
+    animation-name: toRight;
+    animation-duration: 1000ms;
+    animation-delay: 0s;
+    animation-timing-function: ease-out;
+    animation-fill-mode: forwards;
+}
+
+.ani-delay-1 {
+    animation-delay: 200ms;
+}
+.ani-delay-2 {
+    animation-delay: 500ms;
+}
+
+@keyframes toRight {
+    0% {
+        opacity: 0;
+        transform: translateX(-100px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0px);
+    }
+}
