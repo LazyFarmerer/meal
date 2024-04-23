@@ -38,6 +38,7 @@
       <div id="loadingIndicator"></div>
       <details role="button" class="contrast outline ani-toRight ani-delay-1">
           <summary>사진 올리기</summary>
+          <!-- <form onsubmit="return (async () => {await submitMealImageFile(event);})()"> -->
           <form onsubmit="return submitMealImageFile(event)">
               <input type="file" accept="image/*" id="imageFile" onchange="showFileImage(event);" required>
               <input type="submit" value="전송" id="submitImageFile">
@@ -62,7 +63,8 @@
   <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-app.js"></script>
   <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-firestore.js"></script>
   <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-storage.js"></script>
-  <script type="text/javascript" src="resource/bootstrap.min.js"></script>
+  <!-- <script type="text/javascript" src="resource/bootstrap.min.js"></script> -->
+  <script type="text/javascript" src="data.js"></script>
   <script type="text/javascript" src="resource/main.js"></script>
 </body>
 </html>

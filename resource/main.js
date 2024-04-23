@@ -1,4 +1,4 @@
-
+let restart = 1;
 
 getData().then();
 
@@ -28,7 +28,10 @@ async function getData() {
 
         data.uploadBase64File(response.base64.base64EncodedImage, response.base64.contentType, response.post_title);
         // 이정도 까지 왔으면 다시 재실행
-        await getData();
+        restart--;
+        if (0 < restart) {
+            await getData();
+        }
     }
 
     showLoadingIndicator(false);
@@ -40,12 +43,13 @@ async function getData() {
 function submitMealImageFile(event) {
     event.preventDefault(); // 새로고침 방지
     const imageFile = document.getElementById("imageFile");
+    document.getElementById("showFileImage").innerHTML = loadingIndicator("로딩중... 학교 ㅋㅋㅋ");
 
     data.uploadImageFile(imageFile.files[0]);
 
     imageFile.value = '';
     document.getElementById("showFileImage").innerHTML = "이미지 전송 완료!";
-    return false;
+    console.log("이미지 업로드 완료!");
 }
 
 function switchEvent(event) {
