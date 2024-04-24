@@ -43,13 +43,14 @@ async function getData() {
 function submitMealImageFile(event) {
     event.preventDefault(); // 새로고침 방지
     const imageFile = document.getElementById("imageFile");
-    document.getElementById("showFileImage").innerHTML = loadingIndicator("로딩중... 학교 ㅋㅋㅋ");
+    document.getElementById("showFileImage").innerHTML = loadingIndicator("업로드 중... 학교 ㅋㅋㅋ");
 
-    data.uploadImageFile(imageFile.files[0]);
+    data.uploadImageFile(imageFile.files[0], (url) => {
+        console.log(url);
+        imageFile.value = '';
+        document.getElementById("showFileImage").innerHTML = "이미지 전송 완료!";
+    });
 
-    imageFile.value = '';
-    document.getElementById("showFileImage").innerHTML = "이미지 전송 완료!";
-    console.log("이미지 업로드 완료!");
 }
 
 function switchEvent(event) {
