@@ -77,7 +77,7 @@ function showImage(url = null, title = "", high_quality_url = "") {
     dataInput.innerHTML = `
     <figure>
     <figcaption>${title}</figcaption>
-    <a href="${high_quality_url}" target="_blank">
+    <a href="${url}" target="_blank">
         <img src="${url}"></img>
     </a>
     </figure>
