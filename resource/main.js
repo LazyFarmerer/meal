@@ -10,7 +10,7 @@ async function getData() {
     showLoadingIndicator(true);
     await data.get();
 
-    showImage(data.blog_photo_url, data.post_title);
+    showImage(data.blog_photo_url, data.post_title, data.high_quality_url);
 
     // 시간 체크하고 특정시간(5시간) 지났다면 다시 호출
     if (5 < diffTime(data.time.seconds)) {
@@ -26,7 +26,7 @@ async function getData() {
             return;
         }
 
-        data.uploadBase64File(response.base64.base64EncodedImage, response.base64.contentType, response.post_title);
+        data.uploadBase64File(response.base64.base64EncodedImage, response.base64.contentType, response.post_title, response.high_quality_url);
         // 이정도 까지 왔으면 다시 재실행
         restart--;
         if (0 < restart) {
@@ -58,7 +58,7 @@ function switchEvent(event) {
     const isCheck = element.getAttribute("aria-checked");
     switch (isCheck) {
         case "true":
-            showImage(data.blog_photo_url, data.post_title);
+            showImage(data.blog_photo_url, data.post_title, data.high_quality_url);
             element.setAttribute("aria-checked", "false");
             break;
         case "false":
@@ -68,7 +68,7 @@ function switchEvent(event) {
     }
 }
 
-function showImage(url = null, title = "") {
+function showImage(url = null, title = "", high_quality_url = "") {
     const dataInput = document.getElementById("dataInput");
     if (url == null) {
         dataInput.innerHTML = loadingIndicator();
@@ -77,7 +77,7 @@ function showImage(url = null, title = "") {
     dataInput.innerHTML = `
     <figure>
     <figcaption>${title}</figcaption>
-    <a href="${url}" target="_blank">
+    <a href="${high_quality_url}" target="_blank">
         <img src="${url}"></img>
     </a>
     </figure>
