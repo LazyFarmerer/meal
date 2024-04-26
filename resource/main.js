@@ -1,4 +1,4 @@
-let restart = 1;
+let restart = 3;
 
 getData().then();
 
@@ -26,15 +26,17 @@ async function getData() {
             return;
         }
 
-        data.uploadBase64File(response.base64.base64EncodedImage, response.base64.contentType, response.post_title, response.high_quality_url);
-        // 이정도 까지 왔으면 다시 재실행
-        restart--;
-        if (0 < restart) {
-            await getData();
-        }
+        await data.uploadBase64File(response.base64.base64EncodedImage, response.base64.contentType, response.post_title, async (url) => {
+            // 이정도 까지 왔으면 다시 재실행
+            restart--;
+            if (0 < restart) {
+                await getData();
+            }
+            showLoadingIndicator(false);
+        });
     }
 
-    showLoadingIndicator(false);
+    // showLoadingIndicator(false);
 }
 
 /**
