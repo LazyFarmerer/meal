@@ -34,9 +34,10 @@ async function getData() {
             }
             showLoadingIndicator(false);
         });
+    } else {
+        showLoadingIndicator(false);
     }
 
-    // showLoadingIndicator(false);
 }
 
 /**
