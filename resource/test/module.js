@@ -3,7 +3,7 @@ import {} from "https://www.gstatic.com/firebasejs/8.6.5/firebase-firestore.js";
 import {} from "https://www.gstatic.com/firebasejs/8.6.5/firebase-storage.js";
 
 import {Database} from "./database.js"
-import {FileData} from "./fileData.js"
+import {FileData} from "./fileData.js?1"
 
 const firebaseConfig = {
     apiKey: "AIzaSyDMP8XLvpBjwZRVoTK1ppXZvlaEipFdMqU",
@@ -16,6 +16,10 @@ const firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 let restart = 3;
 
+
+const db = new Database();
+const data = await db.get();
+const fileData = new FileData();
 getData().then();
 
 
@@ -26,8 +30,6 @@ getData().then();
 
 async function getData() {
     showLoadingIndicator(true);
-    const db = new Database();
-    const data = await db.get();
 
     showImage(data.blog_photo_url, data.post_title, data.high_quality_url);
 
@@ -45,32 +47,35 @@ async function getData() {
             return;
         }
 
-        const fileData = new FileData();
-        fileData.setImage(response.base64.base64EncodedImage, response.base64.contentType, response.post_title)
-        .child("personal_photo").child("menu")
+        console.log("이거 실행");
+        fileData.child("blog_photo").child("menu")
+        .setImage(response.base64.base64EncodedImage, response.base64.contentType, response.post_title)
         .onSuccess(async (url) => {
             // 이정도 까지 왔으면 다시 재실행
+            db.update({
+                "time": new Date(),
+                "post_title": response.post_title,
+            });
             restart--;
             if (0 < restart) {
                 await getData();
             }
             showLoadingIndicator(false);
         })
+        .upload();
     } else {
         showLoadingIndicator(false);
     }
 }
 
-
 /**
  * 올린 이미지를 저장
  */
-function submitMealImageFile(event) {
+document.getElementsByTagName("form")[0].addEventListener("submit", (event) => {
     event.preventDefault(); // 새로고침 방지
     const imageFile = document.getElementById("imageFile");
     document.getElementById("showFileImage").innerHTML = loadingIndicator("업로드 중... 학교 ㅋㅋㅋ");
-
-    const fileData = new FileData();
+    
     fileData.child("personal_photo").child("menu")
     .setImage(imageFile.files[0])
     .onSuccess((url) => {
@@ -79,15 +84,9 @@ function submitMealImageFile(event) {
         document.getElementById("showFileImage").innerHTML = "이미지 전송 완료!";
     })
     .upload();
-    // data.uploadImageFile(imageFile.files[0], (url) => {
-    //     console.log(url);
-    //     imageFile.value = '';
-    //     document.getElementById("showFileImage").innerHTML = "이미지 전송 완료!";
-    // });
+});
 
-}
-
-function switchEvent(event) {
+document.querySelector('input[role="switch"]').addEventListener("click", (event) => {
     const element = event.target;
     const isCheck = element.getAttribute("aria-checked");
     switch (isCheck) {
@@ -100,7 +99,7 @@ function switchEvent(event) {
             element.setAttribute("aria-checked", "true");
             break;
     }
-}
+})
 
 function showImage(url = null, title = "") {
     const dataInput = document.getElementById("dataInput");
@@ -118,14 +117,14 @@ function showImage(url = null, title = "") {
     `;
 }
 
-function showFileImage(event) {
+document.getElementById("imageFile").addEventListener("change", (event) => {
     const showResult = document.getElementById("showFileImage");
     var reader = new FileReader();
     reader.onload = function(event) {
         showResult.innerHTML = `<img src="${event.target.result}" />`;
     }
     reader.readAsDataURL(event.target.files[0]);
-}
+});
 
 /**
  * 상단에 로딩창 보여줄지 말지 표시하는 함수

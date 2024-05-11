@@ -40,8 +40,8 @@
       <div id="loadingIndicator"></div>
       <details role="button" class="contrast outline ani-toRight ani-delay-1">
           <summary>사진 올리기</summary>
-          <form onsubmit="return submitMealImageFile(event)">
-              <input type="file" accept="image/*" id="imageFile" onchange="showFileImage(event);" required>
+          <form>
+              <input type="file" accept="image/*" id="imageFile" required>
               <input type="submit" value="전송" id="submitImageFile">
               <div id="showFileImage"></div>
           </form>
@@ -49,7 +49,7 @@
       <details role="button" class="contrast outline ani-toRight ani-delay-2">
           <summary>혹시 이번주 사진이 아닌가요?</summary>
           <label>
-              <input name="show-image" type="checkbox" role="switch" aria-checked="false" onclick="switchEvent(event);"/>
+              <input name="show-image" type="checkbox" role="switch" aria-checked="false"/>
               다른 사람이 직접 올린 식단표 보기
           </label>
       </details>
@@ -58,13 +58,5 @@
       </div>
     </section>
   </main>
-
-
-  <!-- ### -->
-  <!-- <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-app.js"></script> -->
-  <!-- <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-firestore.js"></script> -->
-  <!-- <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-storage.js"></script> -->
-  <!-- <script type="text/javascript" src="resource/bootstrap.min.js"></script> -->
-  <!-- <script type="text/javascript" src="resource/main.js"></script> -->
 </body>
 </html>
