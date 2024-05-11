@@ -20,7 +20,9 @@
   </script>
 
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css"/>
+  <link rel="stylesheet" href="resource/style.css" />
   <link rel="stylesheet" href="resource/animation.css" />
+  <script type="module" src="resource/test/module.js"></script>
 </head>
 <body>
   <header class="container">
@@ -38,7 +40,6 @@
       <div id="loadingIndicator"></div>
       <details role="button" class="contrast outline ani-toRight ani-delay-1">
           <summary>사진 올리기</summary>
-          <!-- <form onsubmit="return (async () => {await submitMealImageFile(event);})()"> -->
           <form onsubmit="return submitMealImageFile(event)">
               <input type="file" accept="image/*" id="imageFile" onchange="showFileImage(event);" required>
               <input type="submit" value="전송" id="submitImageFile">
@@ -60,10 +61,10 @@
 
 
   <!-- ### -->
-  <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-app.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-firestore.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-storage.js"></script>
-  <script type="text/javascript" src="resource/bootstrap.min.js"></script>
-  <script type="text/javascript" src="resource/main.js"></script>
+  <!-- <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-app.js"></script> -->
+  <!-- <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-firestore.js"></script> -->
+  <!-- <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-storage.js"></script> -->
+  <!-- <script type="text/javascript" src="resource/bootstrap.min.js"></script> -->
+  <!-- <script type="text/javascript" src="resource/main.js"></script> -->
 </body>
 </html>
