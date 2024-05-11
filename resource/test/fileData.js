@@ -21,7 +21,7 @@ export class FileData {
     }
 
     child(path) {
-        this.#storageRef.child(path);
+        this.#storageRef = this.#storageRef.child(path);
         return this;
     }
 
@@ -44,8 +44,8 @@ export class FileData {
         }
 
         uploadimage.on("state_changed",
-            this.#progressFunction(snapshot),
-            this.#errorFunction(error),
+            this.#progressFunction,
+            this.#errorFunction,
             () => {
                 uploadimage.snapshot.ref.getDownloadURL().then((url) => {
                     this.#successFunction(url);

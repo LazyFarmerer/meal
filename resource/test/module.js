@@ -15,10 +15,10 @@ const firebaseConfig = {
 };
 firebase.initializeApp(firebaseConfig);
 let restart = 3;
+let data
 
 
 const db = new Database();
-const data = await db.get();
 const fileData = new FileData();
 getData().then();
 
@@ -30,6 +30,7 @@ getData().then();
 
 async function getData() {
     showLoadingIndicator(true);
+    data = await db.get();
 
     showImage(data.blog_photo_url, data.post_title, data.high_quality_url);
 
