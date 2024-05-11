@@ -1,4 +1,4 @@
-import {Data} from "./dataa.js"
+import {Data} from "./data.js"
 
 export class Database {
     #db;
