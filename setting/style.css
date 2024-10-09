@@ -1,3 +1,13 @@
-/* div {
+.display_flex {
     display: flex;
-} */
+    gap: 3%; /* 인풋과 버튼 사이에 약간의 간격 */
+}
+
+.display_flex > input {
+    flex-grow: 1; /* 인풋이 가능한 최대 너비를 차지하게 만듦 */
+}
+
+.display_flex > button {
+    flex-shrink: 0; /* 버튼이 고정 크기로 유지되도록 */
+    height: 100%;
+}
