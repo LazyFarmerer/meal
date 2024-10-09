@@ -37,7 +37,7 @@ async function getData() {
     // 시간 체크하고 특정시간(5시간) 지났다면 다시 호출
     if (5 < diffTime(data.time.seconds)) {
         console.log(`${5}시간이 지나서 구글api 호출`);
-        const response = await fetch("https://script.google.com/macros/s/AKfycbwNr8wvP0T1L5JSMOGSyM0p54BiM0eh0zRpWa_Yna_Rt-_4OUXN9MMtUTvFjlhC2kU3/exec")
+        const response = await fetch(`https://script.google.com/macros/s/AKfycbwNr8wvP0T1L5JSMOGSyM0p54BiM0eh0zRpWa_Yna_Rt-_4OUXN9MMtUTvFjlhC2kU3/exec?index=${data.index}`)
             .then((response) => response.json());
         console.log(data.post_title === response.post_title);
         if (data.post_title === response.post_title) { // 같으면 그냥 조기종료

@@ -21,6 +21,8 @@ export class Data {
     set personal_photo_url(value) {}
     get time() { return this.#data.time; }
     set time(value) {}
+    get index() { return this.#data.index; }
+    set index(value) {}
     get user_time() { return this.#data.user_time; }
     set user_time(value) {}
 }
