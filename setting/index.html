@@ -20,10 +20,9 @@
   </script> -->
 
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css"/>
-  <link rel="stylesheet" href="../resource/style.css" />
   <link rel="stylesheet" href="../resource/animation.css" />
-  <link rel="stylesheet" href="/setting/style.css">
-  <script type="module" src="/setting/setting.js"></script>
+  <link rel="stylesheet" href="style.css">
+  <script type="module" src="setting.js"></script>
 </head>
 <body>
   <header class="container">
@@ -33,15 +32,18 @@
       </ul>
       <ul>
         <li>
-          <li><a href="/">돌아가기</a></li>
+          <!-- <li><a href="/meal">돌아가기</a></li> -->
+          <li><a href="#" onClick="history.back();">돌아가기</a></li>
         </li>
       </ul>
     </nav>
   </header>
   <main class="container">
-    <p>사진 인덱스</p>
-    <input type="number" min="0" max="10" id="index_box">
-    <button id="index_button">저장</button>
+    <p class="contrast outline ani-toRight ani-delay-1">사진 인덱스</p>
+    <div class="contrast outline ani-toRight ani-delay-2">
+      <input type="number" min="0" max="10" id="index_box">
+      <button id="index_button">저장</button>
+    </div>
 
     <div id="loadingIndicator"></div>
   </main>
